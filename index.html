@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Vanshika ✨</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --soft-pink: #fce4ec;
+      --aesthetic-peach: #fff5f0;
+      --text-grey: #5d5d5d;
+      --accent: #ffb7b2;
+      --gold: #d4a373;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--aesthetic-peach);
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-grey);
+      scroll-behavior: smooth;
+    }
+
+    .hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.123), rgba(255, 255, 255, 0.123)),
+    url("./bg.jpg.jpeg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem;
+      color: var(--gold);
+      margin: 0;
+      animation: fadeIn 2s ease-in;
+    }
+
+    .magic-btn {
+      background-color: white;
+      border: 2px solid var(--accent);
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+
+    .magic-btn:hover {
+      transform: scale(1.05);
+      background-color: var(--accent);
+      color: white;
+    }
+
+    .hidden-section {
+      opacity: 0;
+      transform: translateY(40px);
+      pointer-events: none;
+    }
+
+    .show-section {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 1s ease;
+      pointer-events: auto;
+    }
+
+    .secret-container {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    #shayariContent {
+      display: none;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      margin-top: 20px;
+      line-height: 1.8;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+      animation: slideUp 0.8s ease;
+    }
+
+    /* TWO GALLERIES SIDE BY SIDE */
+    .gallery-wrapper {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    .gallery {
+  width: 45%;
+  min-width: 320px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+
+    .photo-container {
+  width: 500px;              /* fixed frame */
+  height: 400px;             /* fixed frame */
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;          /* 🔒 prevents overflow */
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  position: relative;        /* for counter overlay */
+  flex-shrink: 0;            /* prevents flex collapse */
+}
+
+
+.photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* fills frame safely */
+  display: block;
+}
+
+
+    .arrow {
+      background: white;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      cursor: pointer;
+      font-size: 24px;
+      color: var(--gold);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* INSTAGRAM-STYLE CAROUSEL COUNTER */
+.carousel-counter {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 999px;
+  font-weight: 500;
+  z-index: 10;
+}
+
+
+
+ .hero-subtext {
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.6);
+}
+
+.photo-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+  </style>
+</head>
+
+<body>
+
+  <!-- MUSIC -->
+  <audio id="bgMusic" loop>
+    <source src="./keshav.mpeg" type="audio/mpeg">
+  </audio>
+
+  <section class="hero">
+    <h1>Happy Birthday Vanshika!</h1>
+    <p class="hero-subtext"><b>A gift for my <i>saheli</i> 🌸</b></p>
+
+    <button class="magic-btn" onclick="startMagic()">Start the Magic 🪄</button>
+  </section>
+
+  <div class="secret-container hidden-section" id="secretSection">
+    <button class="magic-btn" style="border-color: var(--gold); color: var(--gold);" onclick="toggleShayari()">Click for a special note 💌</button>
+
+    <div id="shayariContent">
+      Jaane anjaane me bani meri wo saheli<br>
+      Khali panno pe shyayi ki tarah meri saheli<br>
+      Bikhri si soch ko raah dikhaye meri saheli<br>
+      Meri kamiyo ko nazarandaaz kre meri saheli <br>
+      Naa maange bhi saath nibhaye meri saheli<br>
+      Chhoti si, nadaan si meri saheli <br>
+      Gussa naak pe chadaye rakhe meri saheli<br><br>
+      <b>Aathvi me cheating, dasvi me notes, gyaarvi me gyaan, baarvi se raaste alag...</b><br>
+      Waqt ne jo likha, hum maan gaye chupchaap,<br>
+      Dino me baatein, mahino me milna<br>
+      Ab aam hogya hai shyd zingagi ki yehi paheli<br>
+      Par fir bhi khaas hai mujhe meri saheli ❤️
+    </div>
+
+    <button class="magic-btn" id="showGalleryBtn" style="display:none; margin: 20px auto; border-color: var(--gold); color: var(--gold);" onclick="showGallery()">
+      See our memories 📸
+    </button>
+
+    <!-- TWO CAROUSELS SIDE BY SIDE -->
+    <div class="gallery-wrapper hidden-section" id="gallerySection">
+
+      <!-- Gallery 1 -->
+      <div class="gallery">
+        <button class="arrow left" onclick="prevPhoto(1)">←</button>
+        <div class="photo-container">
+  <div class="carousel-counter" id="counter1">1 / 2</div>
+  <img id="carouselPhoto1" src="./1.jpg.jpeg" alt="Photo">
+</div>
+
+        <button class="arrow right" onclick="nextPhoto(1)">→</button>
+      </div>
+
+      <!-- Gallery 2 -->
+      <div class="gallery">
+        <button class="arrow left" onclick="prevPhoto(2)">←</button>
+       <div class="photo-container">
+  <div class="carousel-counter" id="counter2">1 / 2</div>
+  <video id="carouselVideo2" src="./1st.mp4" controls playsinline></video>
+</div>
+
+
+        <button class="arrow right" onclick="nextPhoto(2)">→</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const photos1 = [
+      "./1.jpg.jpeg",
+      "./2.jpeg",
+      "./333.jpeg",
+      "./44.jpeg",
+      "./555.jpeg",
+      "./6.jpeg",
+      "./7.jpeg",
+      "./88.jpeg",
+      "./99.jpeg",
+      "./1010.jpeg",
+      "./1111.jpeg",
+      "./12.jpeg",
+      "./13.jpeg",
+      "./14.jpeg",
+      "./15.jpeg",
+      "./16.jpeg",
+      "./17.jpeg",
+       "./18.jpeg",
+      "./19.jpeg",
+      "./20.jpeg",
+       "./21.jpeg",
+      "./2222.jpeg",
+      "./23.jpeg",
+       "./24.jpeg",
+      "./255.jpeg",
+      
+    ];
+
+    const videos2 = [
+  "./1st.mp4",
+  "./10th.mp4",
+  "./11th.mp4",
+  "./2nd.mp4",
+  "./3rd.mp4",
+  "./4th.mp4",
+  "./5th.mp4",
+  "./6th.mp4",
+  "./7th.mp4",
+  "./8th.mp4",
+  "./9th.mp4",
+  "./12th.mp4",
+  "./13th.mp4",
+  
+];
+
+
+    let currentIndex1 = 0;
+    let currentIndex2 = 0;
+
+    function showPhoto(galleryId, index) {
+  if (galleryId === 1) {
+    const img = document.getElementById("carouselPhoto1");
+    img.style.opacity = 0;
+
+    setTimeout(() => {
+      img.src = photos1[index];
+      img.style.opacity = 1;
+      updateCounter(1);
+    }, 300);
+  }
+
+  if (galleryId === 2) {
+  const video = document.getElementById("carouselVideo2");
+
+  video.pause();        // stop current video
+  video.currentTime = 0;
+  video.src = videos2[index];
+  video.load();
+
+  updateCounter(2);
+}
+
+}
+
+
+
+    function nextPhoto(galleryId) {
+  if (galleryId === 1) {
+    currentIndex1 = (currentIndex1 + 1) % photos1.length;
+    showPhoto(1, currentIndex1);
+  } else {
+    currentIndex2 = (currentIndex2 + 1) % videos2.length;
+    showPhoto(2, currentIndex2);
+  }
+}
+
+function prevPhoto(galleryId) {
+  if (galleryId === 1) {
+    currentIndex1 = (currentIndex1 - 1 + photos1.length) % photos1.length;
+    showPhoto(1, currentIndex1);
+  } else {
+    currentIndex2 = (currentIndex2 - 1 + videos2.length) % videos2.length;
+    showPhoto(2, currentIndex2);
+  }
+}
+
+
+    function startMagic() {
+      const music = document.getElementById('bgMusic');
+
+      // Play music after click
+      music.play();
+
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#ffb7b2', '#fce4ec', '#d4a373']
+      });
+
+      const secret = document.getElementById("secretSection");
+      secret.classList.remove("hidden-section");
+      secret.classList.add("show-section");
+      secret.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function toggleShayari() {
+      const shayari = document.getElementById("shayariContent");
+      const galleryBtn = document.getElementById("showGalleryBtn");
+
+      if (shayari.style.display === "block") {
+        shayari.style.display = "none";
+        galleryBtn.style.display = "none";
+      } else {
+        shayari.style.display = "block";
+        galleryBtn.style.display = "inline-block";
+      }
+    }
+
+    function showGallery() {
+      const gallery = document.getElementById("gallerySection");
+      gallery.classList.remove("hidden-section");
+      gallery.classList.add("show-section");
+      gallery.scrollIntoView({ behavior: "smooth" });
+    }
+    function updateCounter(galleryId) {
+  if (galleryId === 1) {
+    document.getElementById("counter1").textContent =
+      `${currentIndex1 + 1} / ${photos1.length}`;
+  } else {
+    document.getElementById("counter2").textContent =
+      `${currentIndex2 + 1} / ${videos2.length}`;
+  }
+}
+
+updateCounter(1);
+updateCounter(2);
+
+const bgMusic = document.getElementById("bgMusic");
+const galleryVideo = document.getElementById("carouselVideo2");
+
+/* Pause music when video plays */
+galleryVideo.addEventListener("play", () => {
+  if (!bgMusic.paused) {
+    bgMusic.pause();
+  }
+});
+
+/* Resume music when video pauses */
+galleryVideo.addEventListener("pause", () => {
+  bgMusic.play();
+});
+
+/* Resume music when video ends */
+galleryVideo.addEventListener("ended", () => {
+  bgMusic.play();
+});
+
+
+
+  </script>
+
+</body>
+</html>
